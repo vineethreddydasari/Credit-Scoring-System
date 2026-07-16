@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Credit Scoring System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="container">
+
+        <h1>🏦 AI Credit Scoring System</h1>
+
+        <p class="subtitle">
+            Predict Customer Credit Risk Using Machine Learning
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <input type="number"
+                   name="age"
+                   placeholder="👤 Age"
+                   required>
+
+            <select name="sex" required>
+                <option value="">👤 Select Gender</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+
+            <select name="job" required>
+                <option value="">💼 Employment Type</option>
+                <option value="0">Unskilled & Non-Resident</option>
+                <option value="1">Unskilled Resident</option>
+                <option value="2">Skilled Employee</option>
+                <option value="3">Management / Self-Employed</option>
+            </select>
+
+            <select name="housing" required>
+                <option value="">🏠 Housing Status</option>
+                <option value="1">Own House</option>
+                <option value="2">Rental House</option>
+            </select>
+
+            <select name="saving" required>
+                <option value="">💰 Saving Account Status</option>
+                <option value="1">Little Savings</option>
+                <option value="2">Moderate Savings</option>
+                <option value="4">Rich</option>
+            </select>
+
+            <select name="checking" required>
+                <option value="">🏦 Checking Account Status</option>
+                <option value="1">Little Balance</option>
+                <option value="2">Moderate Balance</option>
+                <option value="3">High Balance</option>
+            </select>
+
+            <input type="number"
+                   name="credit_amount"
+                   placeholder="💳 Credit Amount"
+                   required>
+
+            <input type="number"
+                   name="duration"
+                   placeholder="📅 Loan Duration (Months)"
+                   required>
+
+            <select name="purpose" required>
+                <option value="">🎯 Loan Purpose</option>
+                <option value="0">Business</option>
+                <option value="1">Car Purchase</option>
+                <option value="2">Domestic Appliances</option>
+                <option value="3">Education</option>
+                <option value="4">Furniture / Equipment</option>
+                <option value="6">Repairs</option>
+                <option value="7">Vacation / Others</option>
+            </select>
+
+            <button type="submit">
+                Predict Credit Risk
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+
+        <div class="result">
+
+            <h2>{{ prediction_text }}</h2>
+
+            <br>
+
+            <h3>
+                Approval Probability:
+                {{ approval_percentage }}%
+            </h3>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
